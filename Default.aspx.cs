@@ -1,36 +1,40 @@
 using System;
-using System.Data;
-using System.Web;
+using System.Web.UI.WebControls;
 
-public partial class Admin_Dashboard : AdminPage
+public partial class HomePage : ShopPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack) return;
+        if (!IsPostBack) BindData();
+    }
 
-        litAdmin.Text = HttpUtility.HtmlEncode(Convert.ToString(Session["UserName"]));
+    private void BindData()
+    {
+        rptCategories.DataSource = Db.Query("SELECT id, name, description FROM categories WHERE parent_id IS NULL ORDER BY name");
+        rptCategories.DataBind();
 
-        litRevenue.Text = Helper.Money(Db.Scalar("SELECT COALESCE(SUM(total),0) FROM orders WHERE payment_status='Paid'"));
-        litOrders.Text = Db.Scalar("SELECT COUNT(*) FROM orders").ToString();
-        litNewOrders.Text = Db.Scalar("SELECT COUNT(*) FROM orders WHERE order_status='Placed'").ToString();
-        litProducts.Text = Db.Scalar("SELECT COUNT(*) FROM products").ToString();
-        litUsers.Text = Db.Scalar("SELECT COUNT(*) FROM users WHERE role='user'").ToString();
+        // Brands section (sirf woh brands jinke products hain)
+        rptBrands.DataSource = Db.Query(
+            "SELECT b.id, b.name, b.description, COUNT(p.id) AS product_count " +
+            "FROM brands b JOIN products p ON p.brand_id = b.id AND p.is_active = 1 " +
+            "WHERE b.is_active = 1 GROUP BY b.id, b.name, b.description ORDER BY b.name");
+        rptBrands.DataBind();
 
-        try { litMessages.Text = Db.Scalar("SELECT COUNT(*) FROM contact_messages WHERE is_read = 0").ToString(); }
-        catch (Exception) { litMessages.Text = "-"; }   // table abhi bana nahi (update_database.sql)
+        rptProducts.DataSource = Db.Query(
+            "SELECT p.id, p.name, p.description, p.price, p.stock, p.image, c.name AS category_name, b.name AS brand_name " +
+            "FROM products p JOIN categories c ON c.id = p.category_id LEFT JOIN brands b ON b.id = p.brand_id " +
+            "WHERE p.is_active = 1 ORDER BY p.created_at DESC, p.id DESC LIMIT 8");
+        rptProducts.DataBind();
+    }
 
-        DataTable recent = Db.Query(
-            "SELECT o.id, o.total, o.payment_method, o.payment_status, o.order_status, o.created_at, u.full_name " +
-            "FROM orders o JOIN users u ON u.id = o.user_id ORDER BY o.id DESC LIMIT 8");
-        rptRecent.DataSource = recent;
-        rptRecent.DataBind();
-        lblNoOrders.Visible = recent.Rows.Count == 0;
-
-        DataTable low = Db.Query(
-            "SELECT p.name, p.stock, c.name AS category_name FROM products p " +
-            "JOIN categories c ON c.id = p.category_id WHERE p.stock <= 5 ORDER BY p.stock, p.name LIMIT 10");
-        rptLow.DataSource = low;
-        rptLow.DataBind();
-        lblNoLow.Visible = low.Rows.Count == 0;
+    protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "add")
+        {
+            string error = TryAddToCart(Convert.ToInt32(e.CommandArgument), 1);
+            litMsg.Text = (error == null)
+                ? Alert("success", "Added to your cart!")
+                : Alert("error", error);
+        }
     }
 }
