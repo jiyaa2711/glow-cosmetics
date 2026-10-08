@@ -1,0 +1,91 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Glow Cosmetics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" runat="server" />
+    <script>document.documentElement.className += ' js';</script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header class="navbar">
+            <div class="container nav-inner">
+                <a class="brand" href="~/Default.aspx" runat="server">Glow<span>.</span></a>
+
+                <nav class="nav-links" id="navLinks">
+                    <asp:HyperLink ID="navHome" runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
+                    <asp:HyperLink ID="navBrands" runat="server" NavigateUrl="~/Brands.aspx">Brands</asp:HyperLink>
+                    <asp:HyperLink ID="navShop" runat="server" NavigateUrl="~/Products.aspx">Shop</asp:HyperLink>
+                    <asp:HyperLink ID="navAbout" runat="server" NavigateUrl="~/About.aspx">About Us</asp:HyperLink>
+                    <asp:HyperLink ID="navContact" runat="server" NavigateUrl="~/Contact.aspx">Contact</asp:HyperLink>
+                    <asp:HyperLink ID="lnkMyOrders" runat="server" NavigateUrl="~/MyOrders.aspx" Visible="false">My Orders</asp:HyperLink>
+                    <asp:HyperLink ID="lnkAdmin" runat="server" NavigateUrl="~/Admin/Default.aspx" Visible="false">Admin Panel</asp:HyperLink>
+                </nav>
+
+                <div class="nav-right">
+                    <a href="~/Cart.aspx" runat="server" class="cart-link">&#128722; Cart
+                        <asp:Label ID="lblCartCount" runat="server" CssClass="cart-count" Text="0"></asp:Label>
+                    </a>
+
+                    <asp:Panel ID="pnlGuest" runat="server" CssClass="nav-right">
+                        <a href="~/Login.aspx" runat="server" class="btn btn-outline btn-sm">Login</a>
+                        <a href="~/Register.aspx" runat="server" class="btn btn-primary btn-sm">Register</a>
+                    </asp:Panel>
+
+                    <asp:Panel ID="pnlUser" runat="server" CssClass="nav-right" Visible="false">
+                        <span class="nav-hello">Hi, <asp:Label ID="lblUserName" runat="server"></asp:Label></span>
+                        <a href="~/Logout.aspx" runat="server" class="btn btn-outline btn-sm">Logout</a>
+                    </asp:Panel>
+
+                    <button type="button" class="nav-toggle" id="navToggle" aria-label="Open menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid four">
+                    <div>
+                        <span class="brand">Glow<span style="color:#e0457b">.</span></span>
+                        <p style="margin-top:8px; max-width:340px;">Beauty that feels good. Skincare, makeup, haircare and fragrance - delivered to your door.</p>
+                    </div>
+                    <div>
+                        <h4>Shop</h4>
+                        <a href="~/Products.aspx" runat="server">All Products</a>
+                        <a href="~/Cart.aspx" runat="server">My Cart</a>
+                        <a href="~/MyOrders.aspx" runat="server">My Orders</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="~/About.aspx" runat="server">About Us</a>
+                        <a href="~/Contact.aspx" runat="server">Contact Us</a>
+                    </div>
+                    <div>
+                        <h4>Account</h4>
+                        <a href="~/Login.aspx" runat="server">Login</a>
+                        <a href="~/Register.aspx" runat="server">Register</a>
+                    </div>
+                </div>
+<div class="footer-bottom">&copy; <%= DateTime.Now.Year %> Glow Cosmetics | Designed &amp; developed by Jiya Dodhiya</div>            </div>
+        </footer>
+
+        <button type="button" class="to-top" id="toTop" aria-label="Back to top">&#8593;</button>
+
+        <script src='<%= ResolveUrl("~/js/site.js") %>'></script>
+    </form>
+</body>
+</html>

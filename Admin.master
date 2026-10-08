@@ -1,0 +1,42 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="AdminMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Glow Cosmetics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" runat="server" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="admin-layout">
+
+            <aside class="sidebar">
+                <span class="brand">Glow<span style="color:#e0457b">.</span></span>
+                <small>Admin Panel</small>
+
+                <a id="mDash" runat="server" class="menu" href="~/Admin/Default.aspx">Dashboard</a>
+                <a id="mBrand" runat="server" class="menu" href="~/Admin/Brands.aspx">Brands</a>
+                <a id="mCat" runat="server" class="menu" href="~/Admin/Categories.aspx">Categories</a>
+                <a id="mProd" runat="server" class="menu" href="~/Admin/Products.aspx">Products</a>
+                <a id="mOrd" runat="server" class="menu" href="~/Admin/Orders.aspx">Orders</a>
+                <a id="mUsers" runat="server" class="menu" href="~/Admin/Users.aspx">Customers</a>
+                <a id="mMsg" runat="server" class="menu" href="~/Admin/Messages.aspx">Messages</a>
+                <hr />
+                <a class="menu" runat="server" href="~/Default.aspx">View Website</a>
+                <a class="menu" runat="server" href="~/Logout.aspx">Logout</a>
+            </aside>
+
+            <div class="admin-main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

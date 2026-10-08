@@ -1,0 +1,9 @@
+# Visual Studio
+.vs/
+obj/
+*.user
+*.suo
+
+# NuGet packages (restore with: Install-Package MySql.Data -Version 8.0.33)
+Bin/
+packages/

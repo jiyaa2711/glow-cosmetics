@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+  <defs>
+    <linearGradient id="a1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fde7ee"/>
+      <stop offset="1" stop-color="#f7b4cc"/>
+    </linearGradient>
+    <linearGradient id="a2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7a3a72"/>
+      <stop offset="1" stop-color="#3d1a3a"/>
+    </linearGradient>
+    <linearGradient id="a3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0659b"/>
+      <stop offset="1" stop-color="#b52a68"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="500" rx="36" fill="url(#a1)"/>
+  <circle cx="480" cy="90" r="80" fill="#ffffff" opacity=".35"/>
+  <circle cx="90" cy="430" r="110" fill="#ffffff" opacity=".25"/>
+
+  <!-- shelf -->
+  <rect x="70" y="360" width="460" height="16" rx="8" fill="#3d1a3a" opacity=".85"/>
+  <rect x="100" y="376" width="14" height="70" rx="6" fill="#3d1a3a" opacity=".6"/>
+  <rect x="486" y="376" width="14" height="70" rx="6" fill="#3d1a3a" opacity=".6"/>
+
+  <!-- jar -->
+  <rect x="110" y="290" width="110" height="70" rx="16" fill="#ffffff" opacity=".95"/>
+  <rect x="106" y="262" width="118" height="34" rx="10" fill="url(#a2)"/>
+  <text x="165" y="335" font-family="Georgia, serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#b52a68">Glow</text>
+
+  <!-- tall bottle -->
+  <rect x="250" y="150" width="92" height="210" rx="22" fill="url(#a3)"/>
+  <rect x="274" y="112" width="44" height="42" rx="8" fill="url(#a2)"/>
+  <rect x="262" y="176" width="10" height="160" rx="5" fill="#ffffff" opacity=".35"/>
+  <rect x="266" y="230" width="60" height="70" rx="10" fill="#ffffff" opacity=".95"/>
+  <text x="296" y="272" font-family="Georgia, serif" font-size="19" font-weight="bold" text-anchor="middle" fill="#3d1a3a">Glow</text>
+
+  <!-- small bottle -->
+  <rect x="380" y="240" width="76" height="120" rx="18" fill="url(#a2)"/>
+  <rect x="399" y="212" width="38" height="32" rx="8" fill="#c99a5b"/>
+  <rect x="394" y="276" width="48" height="52" rx="8" fill="#ffffff" opacity=".95"/>
+  <text x="418" y="308" font-family="Georgia, serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#3d1a3a">Glow</text>
+
+  <!-- heart + sparkles -->
+  <path d="M470 150 C470 130 500 128 500 150 C500 168 470 178 470 190 C470 178 440 168 440 150 C440 128 470 130 470 150Z" fill="#e0457b" opacity=".85"/>
+  <g fill="#ffffff">
+    <path d="M120 130 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z"/>
+    <path d="M200 90 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" opacity=".9"/>
+    <path d="M420 110 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5z" opacity=".9"/>
+  </g>
+</svg>
